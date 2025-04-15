@@ -17,8 +17,10 @@ function SelectUser() {
       value={userId}
       onChange={changeUser}
     >
-      <option value="1">Антон</option>
-      <option value="2">Вася</option>
+      <option value="1">Анна</option>
+      <option value="2">Иван</option>
+      <option value="2">Мария</option>
+      <option value="2">Алексей</option>
     </select>
   );
 }

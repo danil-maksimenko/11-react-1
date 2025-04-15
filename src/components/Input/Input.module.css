@@ -11,15 +11,34 @@
 }
 
 .input {
-  border: none;
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 6px;
+  height: 40px;
+  padding: 8px 12px;
   background: none;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   font-family: "Source Sans 3", sans-serif;
-  border-bottom: 1px solid #323232;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.input-date {
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 6px;
+  height: 40px;
+  padding: 8px 12px;
+  background: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-family: "Source Sans 3", sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
 }
 
 .invalid {

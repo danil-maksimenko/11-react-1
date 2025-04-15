@@ -13,6 +13,7 @@ const Input = forwardRef(function Input(
         [styles["invalid"]]: isValid,
         [styles["input-title"]]: appearence == "title",
         [styles["input"]]: appearence == "text",
+        [styles["input-date"]]: appearence == "date",
       })}
       {...props}
     />

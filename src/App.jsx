@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.css";
 import Header from "./components/Header/Header";
 import JournalAddButton from "./components/JournalAddButton/JournalAddButton";
 import JournalForm from "./components/JournalForm/JournalForm";
@@ -8,6 +8,7 @@ import LeftPanel from "./layouts/LeftPanel/LeftPanel";
 import { useLocalStorage } from "./hooks/use-localstorage.hook";
 import { UserContextProvidev } from "./context/user.context";
 import { useState } from "react";
+import Logo from "./components/Logo/Logo";
 
 function mapItems(items) {
   if (!items) {
@@ -52,15 +53,20 @@ function App() {
     setItems([...items.filter((i) => i.id !== id)]);
   };
 
+  const logos = ["/logo.svg", "/vite.svg"];
+
   return (
     <UserContextProvidev>
       <div className="app">
         <LeftPanel>
-          <Header />
+          <Header>
+            <Logo image={logos[0]} />
+          </Header>
           <JournalAddButton clearForm={() => setSelectedItem(null)} />
           <JournalList items={mapItems(items)} setItem={setSelectedItem} />
         </LeftPanel>
         <Body>
+          <h2 className={styles["headline"]}>Create New Note</h2>
           <JournalForm
             onSubmit={addItem}
             onDelete={deleteItem}

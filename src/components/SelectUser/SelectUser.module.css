@@ -1,5 +1,7 @@
 .select {
   padding: 10px;
   background: none;
-  border: 1px solid #323232;
+  border: 1px solid hsl(214.3, 31.8%, 91.4%);
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 100%);
 }
