@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styles from "./SelectUser.module.css";
 import { UserContext } from "../../context/user.context";
+import { User } from "lucide-react";
 
 function SelectUser() {
   const { userId, setUserId } = useContext(UserContext);
@@ -10,18 +11,22 @@ function SelectUser() {
   };
 
   return (
-    <select
-      className={styles["select"]}
-      name="user"
-      id="user"
-      value={userId}
-      onChange={changeUser}
-    >
-      <option value="1">Анна</option>
-      <option value="2">Иван</option>
-      <option value="2">Мария</option>
-      <option value="2">Алексей</option>
-    </select>
+    <div className={styles["select-wrapper"]}>
+      <User size={16} />
+
+      <select
+        className={styles["select"]}
+        name="user"
+        id="user"
+        value={userId}
+        onChange={changeUser}
+      >
+        <option value="1">Анна</option>
+        <option value="2">Иван</option>
+        <option value="2">Мария</option>
+        <option value="2">Алексей</option>
+      </select>
+    </div>
   );
 }
 

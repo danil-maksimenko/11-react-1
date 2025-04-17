@@ -6,6 +6,7 @@ import { INITIAL_STATE, formReducer } from "./JournalForm.state";
 import Input from "../Input/Input";
 import { UserContext } from "../../context/user.context";
 import SelectUser from "../SelectUser/SelectUser";
+import { Calendar, Tag } from "lucide-react";
 
 function JournalForm({ onSubmit, data, onDelete }) {
   const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
@@ -82,7 +83,6 @@ function JournalForm({ onSubmit, data, onDelete }) {
 
   return (
     <>
-      <SelectUser />
       <form className={styles["journal-form"]} onSubmit={addJournalItem}>
         <div className={styles["form-row"]}>
           <Input
@@ -104,28 +104,32 @@ function JournalForm({ onSubmit, data, onDelete }) {
             </button>
           )}
         </div>
-        <div className={styles["form-row"]}>
-          <label htmlFor="date" className={styles["form-label"]}>
-            <img src="/calendar.svg" alt="Иконка календаря" />
-          </label>
-          <Input
-            appearence="date"
-            type="date"
-            ref={dateRef}
-            onChange={onChange}
-            name="date"
-            value={
-              values.date
-                ? new Date(values.date).toISOString().slice(0, 10)
-                : ""
-            }
-            id="date"
-            isValid={!isValid.title}
-          />
+        <div className={styles["form-separated"]}>
+          <SelectUser />
+
+          <div className={styles["form-data"]}>
+            <label htmlFor="date" className={styles["form-label"]}>
+              <Calendar size={16} />
+            </label>
+            <Input
+              appearence="date"
+              type="date"
+              ref={dateRef}
+              onChange={onChange}
+              name="date"
+              value={
+                values.date
+                  ? new Date(values.date).toISOString().slice(0, 10)
+                  : ""
+              }
+              id="date"
+              isValid={!isValid.title}
+            />
+          </div>
         </div>
         <div className={styles["form-row"]}>
           <label htmlFor="tag" className={styles["form-label"]}>
-            <img src="/folder.svg" alt="Иконка папки" />
+            <Tag size={16} />
           </label>
           <Input
             type="text"
