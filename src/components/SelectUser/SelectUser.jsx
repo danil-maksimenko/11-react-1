@@ -18,13 +18,16 @@ function SelectUser() {
         className={styles["select"]}
         name="user"
         id="user"
-        value={userId}
+        value={userId ?? ""}
         onChange={changeUser}
       >
+        <option value="" disabled hidden>
+          Select author
+        </option>
         <option value="1">Анна</option>
         <option value="2">Иван</option>
-        <option value="2">Мария</option>
-        <option value="2">Алексей</option>
+        <option value="3">Мария</option>
+        <option value="4">Алексей</option>
       </select>
     </div>
   );

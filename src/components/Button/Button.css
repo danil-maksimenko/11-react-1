@@ -1,12 +1,13 @@
 .button {
   border-radius: 6px;
-  padding: 8px 30px;
+  padding: 8px 16px;
   font-family: inherit;
   cursor: pointer;
   transition: background 0.25s;
   font-size: 16px;
   border: none;
   color: white;
+  height: 40px;
 }
 
 .accent:hover {
@@ -15,4 +16,13 @@
 
 .accent {
   background: #312eb5;
+}
+
+.secondary {
+  background: #f3f4f6;
+  color: black;
+}
+
+.secondary:hover {
+  background: #e5e7eb;
 }

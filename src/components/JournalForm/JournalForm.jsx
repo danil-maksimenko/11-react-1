@@ -8,19 +8,15 @@ import { UserContext } from "../../context/user.context";
 import SelectUser from "../SelectUser/SelectUser";
 import { Calendar, Tag } from "lucide-react";
 
-function JournalForm({ onSubmit, data, onDelete }) {
+function JournalForm({ onSubmit, data, onDelete, onCancel }) {
   const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
   const { isValid, isFormReadyToSubmit, values } = formState;
-  const titleRef = useRef();
   const dateRef = useRef();
   const postRef = useRef();
   const { userId } = useContext(UserContext);
 
   const focusError = (isValid) => {
     switch (true) {
-      case !isValid.title:
-        titleRef.current.focus();
-        break;
       case !isValid.date:
         dateRef.current.focus();
         break;
@@ -40,7 +36,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
 
   useEffect(() => {
     let timerId;
-    if (!isValid.date || !isValid.post || !isValid.title) {
+    if (!isValid.date || !isValid.post) {
       focusError(isValid);
       timerId = setTimeout(() => {
         dispatchForm({ type: "RESET_VALIDITY" });
@@ -84,26 +80,6 @@ function JournalForm({ onSubmit, data, onDelete }) {
   return (
     <>
       <form className={styles["journal-form"]} onSubmit={addJournalItem}>
-        <div className={styles["form-row"]}>
-          <Input
-            appearence="title"
-            type="text"
-            ref={titleRef}
-            onChange={onChange}
-            value={values.title}
-            name="title"
-            isValid={!isValid.title}
-          />
-          {data?.id && (
-            <button
-              className={styles["delete"]}
-              type="button"
-              onClick={deleteJournalItem}
-            >
-              <img src="/archive.svg" alt="Кнопка удалить" />
-            </button>
-          )}
-        </div>
         <div className={styles["form-separated"]}>
           <SelectUser />
 
@@ -123,7 +99,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
                   : ""
               }
               id="date"
-              isValid={!isValid.title}
+              isValid={!isValid.date}
             />
           </div>
         </div>
@@ -137,6 +113,7 @@ function JournalForm({ onSubmit, data, onDelete }) {
             id="tag"
             value={values.tag}
             name="tag"
+            placeholder="Tags (comma separated)"
           />
         </div>
         <textarea
@@ -147,11 +124,15 @@ function JournalForm({ onSubmit, data, onDelete }) {
           value={values.post}
           cols="30"
           rows="10"
-          className={cn(styles["input"], {
-            [styles["invalid"]]: !isValid.post,
-          })}
+          className={styles["input-textarea"]}
+          placeholder="Write your note here..."
         ></textarea>
-        <Button>Сохранить</Button>
+        <div className={styles["form-buttons"]}>
+          <Button onClick={onCancel} appearance="secondary">
+            Cancel
+          </Button>
+          <Button>Save</Button>
+        </div>
       </form>
     </>
   );

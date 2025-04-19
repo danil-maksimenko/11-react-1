@@ -11,7 +11,6 @@ const Input = forwardRef(function Input(
       ref={ref}
       className={cn(className, {
         [styles["invalid"]]: isValid,
-        [styles["input-title"]]: appearence == "title",
         [styles["input"]]: appearence == "text",
         [styles["input-date"]]: appearence == "date",
       })}
