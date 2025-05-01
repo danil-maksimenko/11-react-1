@@ -15,6 +15,8 @@ function JournalForm({ onSubmit, data, onDelete, onCancel }) {
   const postRef = useRef();
   const { userId } = useContext(UserContext);
 
+  const isSubmitDisabled = !values.post.trim() || !values.date || !userId;
+
   const focusError = (isValid) => {
     switch (true) {
       case !isValid.date:
@@ -131,7 +133,7 @@ function JournalForm({ onSubmit, data, onDelete, onCancel }) {
           <Button onClick={onCancel} appearance="secondary">
             Cancel
           </Button>
-          <Button>Save</Button>
+          <Button disabled={isSubmitDisabled}>Save</Button>
         </div>
       </form>
     </>
